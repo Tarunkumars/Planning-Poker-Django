@@ -1,0 +1,4 @@
+{% extends "PlanningPoker/Game/add.html" %}
+
+{% block action %}{% url 'gameEdit' game.id %}{% endblock %}
+{% block button %}editar{% endblock %}

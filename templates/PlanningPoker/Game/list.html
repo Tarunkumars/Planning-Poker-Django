@@ -1,0 +1,36 @@
+{% extends "PlanningPoker/base.html" %}
+
+{% block content %}
+
+    <section>
+        <h1>Games</h1>
+        <a href="{% url 'gameAdd' %}"
+           class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">add</i>
+        </a>
+
+        <div class="demo-list-action mdl-list">
+            {% for game in game_list %}
+                <div class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <h3>{{ game.name }}</h3>
+        <a href="{% url 'gameDetail' game.id %}">detail</a>
+    </span>
+                    <p>
+                        Created on
+                        <span>{{ game.created }}</span> by
+                        <span>{{ game.user }}</span>
+                    </p>
+                    {% if user == game.user %}
+                        <a class="mdl-list__item-secondary-action" href="{% url 'gameEdit' game.id %}"><i
+                                class="material-icons">mode_edit</i></a>
+                        <a class="mdl-list__item-secondary-action" href="{% url 'deleteGame' game.id %}"><i
+                                class="material-icons">delete</i></a>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <h1 class="center-align grey-text text-lighten-2">No games</h1>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

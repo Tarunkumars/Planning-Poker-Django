@@ -1,0 +1,22 @@
+{% extends "PlanningPoker/base.html" %}
+
+{% block content %}
+
+        <form method="post" action="{% block action %}{% url 'gameAdd' %}{% endblock %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>{{ form.name.label_tag }}</td>
+                <td>{{ form.name }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.players.label_tag }}</td>
+                <td>{{ form.players }}</td>
+            </tr>
+        </table>
+
+        <input type="submit" value="{% block button %}create{% endblock %}"/>
+    </form>
+
+
+{% endblock %}
